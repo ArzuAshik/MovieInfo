@@ -5,7 +5,7 @@ const searchOutput = document.getElementById('searchOutput');
 
 
 function searchAction(){
-    fetch(`http://www.omdbapi.com/?s=${searchInput.value}&apikey=9360d14e`)
+    fetch(`https://www.omdbapi.com/?s=${searchInput.value}&apikey=9360d14e`)
         .then(resp => resp.json())
         .then(data => {
             movies = data.Search;

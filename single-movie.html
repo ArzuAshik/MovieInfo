@@ -18,7 +18,7 @@
     <script>
         function getMovieInfo(){
             const movieId = sessionStorage.getItem('imdbId');
-            fetch(`http://www.omdbapi.com/?i=${movieId}&apikey=9360d14e`)
+            fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=9360d14e`)
                 .then(resp => resp.json())
                 .then(data => {
                     document.title = data.Title;
