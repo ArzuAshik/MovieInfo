@@ -26,7 +26,8 @@ function searchAction(){
 }
 
 function movieDetails(id){
-    console.log(id);
+    sessionStorage.setItem('imdbId', id);
+    window.location = 'single-movie.html';
 }
 
 searchForm.addEventListener('submit', (event) => {

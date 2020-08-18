@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Info</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div id="movieDetails" class="row mt-5">
+            
+        </div>
+    </div>
+    
+
+
+    <script>
+        function getMovieInfo(){
+            const movieId = sessionStorage.getItem('imdbId');
+            fetch(`http://www.omdbapi.com/?i=${movieId}&apikey=9360d14e`)
+                .then(resp => resp.json())
+                .then(data => {
+                    document.title = data.Title;
+                    const detailsOutput = 
+                    `
+                    <div class="col-md-4">
+                        <img src="${data.Poster}" alt="${data.Title}">
+                    </div>
+
+                    <div class="col-md-8">
+                        <h1>${data.Title} - ${data.Year}</h1>
+                        <h3><span class="badge badge-warning">${data.Ratings[0].Value}</span></h3>
+                        <h4><strong>Type:</strong> ${data.Type}</h4>
+                        <h4><strong>Actors:</strong> ${data.Actors}</h4>
+                        <h4><strong>Language:</strong> ${data.Language}</h4>
+                        <h4><strong>Duration:</strong> ${data.Runtime}</h4>
+                        <h4><strong>Released:</strong> ${data.Released}</h4>
+                        <h4><strong>Rated:</strong> ${data.Rated}</h4>                
+                    </div>
+                    <div class="col py-4">
+                        <h2>Plot</h2>
+                        <p>${data.Plot}</p>
+                    </div>
+                    `;
+
+                    document.getElementById('movieDetails').innerHTML = detailsOutput;
+                })
+        }
+
+        getMovieInfo();
+    </script>
+</body>
+</html>
