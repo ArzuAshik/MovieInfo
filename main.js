@@ -13,7 +13,7 @@ function searchAction(){
             movies.forEach(movie => {               
                 output += 
                 `
-                <div class="col-md-3 text-center bg-info py-2">
+                <div class="col-md-3 text-center bg-info py-3 mt-3">
                     <img class="img-fluid"  height="350" width="auto" src="${movie.Poster}" alt="">
                     <h2>${movie.Title}</h2>
                     <h6>Year: ${movie.Year}</h6>
@@ -33,4 +33,13 @@ function movieDetails(id){
 searchForm.addEventListener('submit', (event) => {
     searchAction();
     event.preventDefault();
+})
+
+searchInput.addEventListener('keyup', function(){
+    const time = setTimeout(() =>{
+        searchAction();
+    }, 2000);
+    searchInput.addEventListener('keydown', function(){
+        clearTimeout(time);
+    })
 })
